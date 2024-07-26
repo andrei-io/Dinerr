@@ -1,0 +1,11 @@
+@host = http://localhost:5017
+
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "oni@oni.com",
+  "password": "MyBigPassword"
+}
+
+###
