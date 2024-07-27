@@ -1,6 +1,8 @@
 using Dinerr.Application.Common.Interfaces.Authentication;
+using Dinerr.Application.Common.Interfaces.Persistence;
 using Dinerr.Application.Common.Interfaces.Services;
 using Dinerr.Infrastructure.Authentication;
+using Dinerr.Infrastructure.Persistence;
 using Dinerr.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,10 +15,10 @@ public static class DependencyInjection
         ConfigurationManager configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-        
+
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-        
+        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 }
